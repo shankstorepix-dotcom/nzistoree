@@ -60,8 +60,12 @@ def install_commerce(app, db, key, data, require_admin, limit, audit):
     app.config.setdefault('PAYMENT_PROVIDER',os.getenv('PAYMENT_PROVIDER','mistic'))
     if app.config['PAYMENT_PROVIDER'] not in ('mistic','pantera'):raise RuntimeError('PAYMENT_PROVIDER inválido.')
     webhook = app.config['DISCORD_WEBHOOK_URL']
-    if webhook and not re.fullmatch(r'https://discord\.com/api/webhooks/[0-9]+/[A-Za-z0-9_.-]+', webhook):
-        raise RuntimeError('DISCORD_WEBHOOK_URL deve ser um webhook HTTPS de discord.com, sem parâmetros.')
+    if webhook:
+        if not re.fullmatch(r'https://discord\.com/api/webhooks/[0-9]+/[A-Za-z0-9_.-]+', webhook):
+            if '...' in webhook or 'SEU_' in webhook or 'example' in webhook:
+                app.config['DISCORD_WEBHOOK_URL'] = ''
+            else:
+                raise RuntimeError('DISCORD_WEBHOOK_URL deve ser um webhook HTTPS de discord.com, sem parâmetros.')
     with db() as c:
         c.executescript('''
         CREATE TABLE IF NOT EXISTS payment_terms(order_id TEXT PRIMARY KEY REFERENCES orders(id),accepted_at INTEGER NOT NULL,terms_path TEXT NOT NULL);

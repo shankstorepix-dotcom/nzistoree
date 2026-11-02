@@ -69,12 +69,18 @@ def create_app(config=None):
         load_dotenv(ROOT / '.env', override=False, interpolate=False)
     app = Flask(__name__, static_folder=None)
     production = os.getenv('APP_ENV') == 'production'
-    base_storage = Path('/tmp/nzistore') if os.getenv('VERCEL') else ROOT
+    is_vercel = bool(os.getenv('VERCEL'))
+    base_storage = Path('/tmp/nzistore') if is_vercel else ROOT
+    vercel_host = os.getenv('VERCEL_PROJECT_PRODUCTION_URL') or os.getenv('VERCEL_URL') or ''
+    default_origin = f"https://{vercel_host}" if is_vercel and vercel_host else 'http://localhost:8000'
+    raw_origin = os.getenv('PUBLIC_ORIGIN', default_origin).strip()
+    if raw_origin and not raw_origin.startswith(('http://', 'https://')):
+        raw_origin = f"https://{raw_origin}"
     app.config.update(DATA_DIR=str(base_storage/'data'), UPLOAD_DIR=str(base_storage/'uploads'),
                       PRODUCTION=production, MAX_CONTENT_LENGTH=7_000_000,
-                      PUBLIC_ORIGIN=os.getenv('PUBLIC_ORIGIN', 'http://localhost:8000'),
+                      PUBLIC_ORIGIN=raw_origin,
                       TRUSTED_HOSTS=['localhost', '127.0.0.1'] if not production else [],
-                      DB_KEY=os.getenv('DATABASE_KEY'))
+                      DB_KEY=os.getenv('DATABASE_KEY', '').strip())
     if config:
         app.config.update(config)
     origin = app.config['PUBLIC_ORIGIN']
@@ -84,10 +90,6 @@ def create_app(config=None):
     if not app.config['PRODUCTION'] and parsed.hostname in ('localhost', '127.0.0.1'):
         port_suffix = f':{parsed.port}' if parsed.port else ''
         allowed_origins |= {f'{parsed.scheme}://localhost{port_suffix}', f'{parsed.scheme}://127.0.0.1{port_suffix}'}
-    if app.config['PRODUCTION']:
-        if parsed.scheme != 'https' or not parsed.hostname or not app.config['DB_KEY']:
-            raise RuntimeError('Produção exige PUBLIC_ORIGIN=https://dominio e DATABASE_KEY (64 hex).')
-        app.config['TRUSTED_HOSTS'] = [parsed.hostname]
     data_dir = Path(app.config['DATA_DIR'])
     uploads = Path(app.config['UPLOAD_DIR'])
     data_dir.mkdir(mode=0o700, parents=True, exist_ok=True)
@@ -109,8 +111,19 @@ def create_app(config=None):
                 pass
         os.chmod(key_path, 0o600)
         key = key_path.read_text().strip()
+        app.config['DB_KEY'] = key
     if not re.fullmatch(r'[a-fA-F0-9]{64}', key):
         raise RuntimeError('DATABASE_KEY deve ter exatamente 64 caracteres hexadecimais.')
+    if app.config['PRODUCTION']:
+        if not is_vercel and (parsed.scheme != 'https' or not parsed.hostname or not app.config['DB_KEY']):
+            raise RuntimeError('Produção exige PUBLIC_ORIGIN=https://dominio e DATABASE_KEY (64 hex).')
+        if is_vercel:
+            app.config['TRUSTED_HOSTS'] = [parsed.hostname or 'localhost', '.vercel.app', 'nzistoree.vercel.app']
+            if parsed.hostname:
+                allowed_origins.add(f"https://{parsed.hostname}")
+            allowed_origins.add('https://nzistoree.vercel.app')
+        else:
+            app.config['TRUSTED_HOSTS'] = [parsed.hostname]
     db_path = data_dir/'secure.db'
 
     @contextmanager
