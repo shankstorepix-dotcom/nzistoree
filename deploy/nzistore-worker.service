@@ -1,0 +1,21 @@
+[Unit]
+Description=NziStore payments and Discord worker
+After=network.target
+
+[Service]
+User=nzistore
+Group=nzistore
+WorkingDirectory=/opt/nzistore
+EnvironmentFile=/etc/nzistore.env
+ExecStart=/opt/nzistore/.venv/bin/python commerce_worker.py
+Restart=on-failure
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ReadWritePaths=/opt/nzistore/data /opt/nzistore/uploads
+
+[Install]
+WantedBy=multi-user.target
