@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#9c0f1b">
+  <title>Nzi Store</title>
+  <meta name="description" content="Robux, Nitro e painéis num só lugar. Escolha o pacote, clique em Comprar Agora e finalize o pedido pelo carrinho. Pagamento via Pix.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Big+Shoulders+Display:wght@800;900&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/store.css?v=17">
+<link rel="icon" type="image/png" href="/static/nzi-logo.png?v=2"><link rel="stylesheet" href="/static/halloween.css?v=3"><link rel="stylesheet" href="/static/experience.css?v=5"></head>
+<body class="has-constellation">
+
+<!-- Ícones e artes reutilizados pela página inteira -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.6 7.8v8.4M9.6 8.4h3.6a1.9 1.9 0 0 1 0 3.8H9.6m0 0h4.2a1.9 1.9 0 0 1 0 3.8H9.6M11.8 6.4v1.4m0 8.4v1.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 5 5L19 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m20 20-4-4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.4 11h10.2L20 8H6.2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19.5" r="1.4" fill="currentColor"/><circle cx="17" cy="19.5" r="1.4" fill="currentColor"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-8.6L6 21v-4H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z" fill="currentColor"/></symbol>
+    <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></symbol>
+    <symbol id="i-discord" viewBox="0 0 24 24"><path d="M4 5h16v11h-9l-5 4v-4H4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.4"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3 20 7.5v9L12 21l-8-4.5v-9Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 7.5 12 12l8-4.5M12 12v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="2.5" y="13" width="4" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="17.5" y="13" width="4" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+
+    <!-- Artes das categorias (64x64) -->
+    <symbol id="g-robux" viewBox="0 0 64 64"><path d="M32 6 54 19v26L32 58 10 45V19Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="M32 20 43 26.5v11L32 44 21 37.5v-11Z" fill="currentColor"/></symbol>
+    <symbol id="g-painel" viewBox="0 0 64 64"><rect x="8" y="12" width="48" height="40" rx="6" fill="none" stroke="currentColor" stroke-width="4"/><path d="M8 24h48" stroke="currentColor" stroke-width="4"/><path d="m18 33 7 5.5-7 5.5" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 44h15" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></symbol>
+    <symbol id="g-streamings" viewBox="0 0 64 64"><rect x="6" y="12" width="52" height="34" rx="6" fill="none" stroke="currentColor" stroke-width="4"/><path d="M28 21.5v15l13-7.5Z" fill="currentColor"/><path d="M20 55h24" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></symbol>
+    <symbol id="g-contas-discord" viewBox="0 0 64 64"><path d="M10 12h44a4 4 0 0 1 4 4v26a4 4 0 0 1-4 4H30L18 56V46h-8a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><circle cx="24" cy="29" r="4" fill="currentColor"/><circle cx="40" cy="29" r="4" fill="currentColor"/></symbol>
+    <symbol id="g-contas-roblox" viewBox="0 0 64 64"><circle cx="32" cy="20" r="11" fill="none" stroke="currentColor" stroke-width="4"/><path d="M10 56c0-12 9.8-20 22-20s22 8 22 20" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#app">Ir para o conteúdo</a>
+
+<button id="sidebar-backdrop" class="sidebar-backdrop" aria-label="Fechar navegação" type="button" hidden></button><aside class="sidebar" id="store-sidebar" aria-label="Navegação da loja" aria-hidden="true" inert><button id="sidebar-close" type="button" aria-label="Fechar menu">×</button>
+  <a class="sidebar-brand" href="/" aria-label="Nzi Store, início"><span class="nzi-logo-frame"><img src="/static/nzi-logo.png?v=2" alt="Nzi Store"></span></a>
+  <p class="sidebar-label">Menu</p>
+  <nav class="sidebar-nav" id="sidebar-nav" aria-label="Categorias da loja"></nav>
+  <p class="sidebar-label community-label">Comunidade</p>
+  <div class="sidebar-community" id="sidebar-community"></div>
+</aside>
+<div class="site-main">
+<div class="strip">
+  <span class="pix"><img class="ic payment-icon" src="/static/pix.png?v=2" width="16" height="16" alt="" aria-hidden="true"> Aceitamos apenas Pix</span>
+  <span class="soon">Em breve: cartão e criptomoedas</span>
+</div>
+
+<header class="top" id="top">
+  <div class="top-in">
+    <a class="logo" href="#inicio" aria-label="Nzi Store, início"><span class="nzi-logo-frame"><img src="/static/nzi-logo.png?v=2" alt="Nzi Store"></span></a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="store-sidebar" aria-label="Abrir menu">
+      <svg width="24" height="24" aria-hidden="true"><use href="#i-menu"/></svg>
+    </button>
+    <label class="search">
+      <svg width="18" height="18" aria-hidden="true"><use href="#i-search"/></svg>
+      <input id="search" type="search" placeholder="O que você procura hoje?" autocomplete="off" aria-label="Buscar produto">
+    </label>
+    <a class="btn ghost sm header-account" href="/conta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M4 22v-3a8 8 0 0 1 16 0v3" stroke="currentColor" stroke-width="1.7"/></svg><span>Minha conta</span></a>
+    <nav class="nav" aria-label="Principal" id="nav"></nav>
+    <button class="cart-btn" id="open-cart" type="button" aria-haspopup="dialog" aria-controls="drawer">
+      <svg width="18" height="18" aria-hidden="true"><use href="#i-cart"/></svg>
+      <span class="cart-label">Carrinho</span>
+      <span class="cart-count" id="cart-count">0</span>
+    </button>
+  </div>
+  <div class="menu" id="menu" hidden></div>
+</header>
+
+<main id="app" tabindex="-1">
+  <div class="view" aria-busy="true"></div>
+</main>
+
+<p id="cart-feedback" class="sr-only" role="status" aria-live="polite"></p>
+<footer class="foot" id="foot"></footer>
+</div>
+
+<a class="fab" id="fab" href="#" target="_blank" rel="noopener" aria-label="Falar com o atendimento" hidden>
+  <svg width="26" height="26" aria-hidden="true"><use href="#i-chat"/></svg>
+</a>
+
+<!-- Detalhes do produto -->
+<dialog id="detail" aria-labelledby="detail-title">
+  <div class="dlg">
+    <button class="x" id="detail-close" type="button" aria-label="Fechar">×</button>
+    <div id="detail-content"></div>
+  </div>
+</dialog>
+
+<!-- Carrinho -->
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true">
+  <div class="d-head">
+    <h2 id="cart-title">Seu carrinho</h2>
+    <button class="x" id="close-cart" type="button" aria-label="Fechar carrinho">×</button>
+  </div>
+  <div class="d-body" id="cart-body"></div>
+  <div class="d-foot" id="cart-foot" hidden>
+    <form id="coupon-form" class="coupon-form"><label for="coupon-code">Cupom de desconto</label><div><input id="coupon-code" maxlength="32" placeholder="Digite seu cupom" autocomplete="off"><button class="btn" type="submit">Aplicar</button><button class="btn ghost" id="coupon-remove" type="button" hidden>Remover</button></div><p id="coupon-status" role="status"></p></form><div class="total"><span>Total</span><span class="total-price" id="total">R$ 0,00</span></div>
+    <p class="pay-note"><img class="ic payment-icon" src="/static/pix.png?v=2" width="18" height="18" alt="" aria-hidden="true"> Pagamento somente via Pix</p>
+
+    <div class="security-section"><span>SEGURANÇA</span><p>Pedido e atendimento na sua conta</p></div>
+    <button class="btn block" id="checkout" type="button">Finalizar pedido</button><p class="payment-assurance"><svg width="20" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 3 6v5c0 5 4 9 9 11 5-2 9-6 9-11V6Z" stroke="currentColor" stroke-width="1.7"/><path d="m8 12 3 3 5-6" stroke="currentColor" stroke-width="1.7"/></svg><span>Pagamento via Pix · Mistic Pay</span></p><p id="checkout-status" class="msg" role="status"></p><a id="checkout-login" class="btn ghost block" href="/conta" hidden>Entrar na minha conta</a>
+
+  </div>
+</aside>
+
+<dialog id="recipient-dialog" aria-labelledby="roblox-title"><div class="dlg">
+<button class="x" id="recipient-close" type="button" aria-label="Voltar ao carrinho">×</button>
+<p class="eyebrow">Finalizar pedido · destinatário</p>
+    <section id="roblox-check" class="roblox-check" aria-labelledby="roblox-title">
+      <h3 id="roblox-title">Quem vai receber os Robux?</h3>
+      <p>Digite seu @username do Roblox para encontrar a conta.</p>
+      <form id="roblox-form"><label for="roblox-username">Username do Roblox</label><input id="roblox-username" autocomplete="off" placeholder="Ex.: Builderman" minlength="3" maxlength="20" pattern="[A-Za-z0-9_]{3,20}" required><button class="btn block" id="roblox-search" type="submit">Consultar usuário</button></form>
+      <p id="roblox-status" role="status"></p>
+      <div id="roblox-profile" hidden><img id="roblox-avatar" width="140" height="140" alt="Avatar do Roblox"><strong id="roblox-name"></strong><span id="roblox-handle"></span><button class="btn block" id="roblox-confirm" type="button">Confirmar usuario</button></div>
+    </section>
+<p id="recipient-status" class="msg" role="status"></p><a id="recipient-login" class="btn ghost block" href="/conta" hidden>Entrar na minha conta</a>
+</div></dialog>
+<script src="/static/celebrations.js?v=1"></script>
+<script src="/static/store.js?v=29"></script>
+<script src="/static/constellation.js?v=1"></script>
+<script src="/static/halloween.js?v=204"></script><script src="/static/experience.js?v=4"></script></body>
+</html>

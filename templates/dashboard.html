@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#9c0f1b">
+  <meta name="robots" content="noindex">
+  <title>Painel · Nzi Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+  <link rel="stylesheet" href="/static/style.css"><link rel="stylesheet" href="/static/orders.css?v=1">
+<link rel="icon" type="image/png" href="/static/nzi-logo.png?v=2"><link rel="stylesheet" href="/static/halloween.css?v=2"><link rel="stylesheet" href="/static/experience.css?v=4"><link rel="stylesheet" href="/static/admin-workspace.css?v=6"></head>
+<body class="admin">
+  <header class="admin-top">
+    <div class="admin-top-in">
+      <a class="brand" href="/"><span class="nzi-logo-frame"><img src="/static/nzi-logo.png?v=2" alt="Nzi Store"></span></a>
+      <span class="tag-admin">Painel</span>
+      <a class="btn sm" href="/">Ver loja ↗</a>
+    </div>
+  </header>
+
+  <main class="admin-shell">
+    <section id="auth" class="panel auth">
+      <p class="eyebrow">Acesso restrito</p>
+      <h2 id="auth-title">Entrar no painel</h2>
+      <p class="muted" id="auth-hint"></p>
+      <form id="login">
+        <label for="admin-user">Usuário</label><input id="admin-user" autocomplete="username" maxlength="64" required><label for="password">Senha do administrador</label>
+        <input id="password" type="password" required autocomplete="current-password">
+        <label for="admin-pin">PIN de seis dígitos</label><input id="admin-pin" type="password" inputmode="numeric" pattern="[0-9]{6}" minlength="6" maxlength="6" autocomplete="off" required><button class="btn" type="submit">Entrar com segurança</button>
+      </form>
+      <p class="msg error" id="login-error" role="alert"></p>
+    </section>
+
+    <section id="dashboard" hidden>
+      <aside class="workspace-nav" aria-label="Navegação administrativa">
+        <p class="eyebrow">GESTÃO DA LOJA</p>
+        <button data-workspace="overview" class="active"><img class="workspace-nav-icon" src="/static/admin-icon-chart-histogram.png" alt="" aria-hidden="true">Dashboard</button>
+        <button data-workspace="sales"><img class="workspace-nav-icon" src="/static/admin-icon-shopping-bag.png" alt="" aria-hidden="true">Vendas e pedidos</button>
+        <button data-workspace="conversations"><img class="workspace-nav-icon" src="/static/admin-icon-comment-alt.png" alt="" aria-hidden="true">Conversas <span id="inbox-badge"></span></button>
+        <button data-workspace="products"><img class="workspace-nav-icon" src="/static/admin-icon-shopping-cart.png" alt="" aria-hidden="true">Produtos e estoque</button>
+        <button data-workspace="categories">▤ Categorias</button>
+        <button data-workspace="customers"><img class="workspace-nav-icon" src="/static/admin-icon-user.png" alt="" aria-hidden="true">Clientes</button>
+        <button data-workspace="coupons"><img class="workspace-nav-icon" src="/static/admin-icon-star.png" alt="" aria-hidden="true">Cupons</button>
+        <p class="eyebrow">CONFIGURAÇÕES</p>
+        <button data-workspace="integrations">⌁ Integrações</button>
+        <button data-workspace="security">♧ Segurança</button>
+        <a href="/" target="_blank" rel="noopener">Abrir loja ↗</a>
+        <button id="logout" type="button">Sair do painel</button>
+      </aside>
+      <div class="workspace-main">
+      <div class="dash-head"><div><p class="eyebrow">NZI STORE · ADMINISTRAÇÃO</p><h1 id="workspace-title">Dashboard</h1><p class="muted" id="workspace-subtitle">Receita, vendas e atendimento em um só lugar.</p></div><button class="btn ghost sm" id="workspace-refresh" type="button">Atualizar</button></div>
+      <p id="workspace-status" class="msg" role="status"></p>
+      <section data-workspace-panel="overview">
+        <div class="metric-toolbar"><label for="metric-days">Período</label><select id="metric-days"><option value="1">Hoje</option><option value="7" selected>Últimos 7 dias</option><option value="30">Últimos 30 dias</option><option value="90">Últimos 90 dias</option></select><span class="muted">Horário de São Paulo</span></div>
+        <div class="metric-grid" id="metric-cards" aria-live="polite"></div>
+        <div class="insights-grid"><section class="panel"><h2>Mapa geográfico</h2><p class="muted">Visitas por estado · Brasil</p><div id="geo-map"></div><p id="geo-status" class="muted"></p><div id="geo-list" class="workspace-table-wrap"></div><small>Malha: IBGE · localização aproximada</small></section><section class="panel"><h2>Clientes no período</h2><div id="buyer-summary"></div><h2>Aprovação de pedidos</h2><div id="approval-gauge"></div><p class="muted">Pedidos pagos entre os criados no período. Não é conversão de visitantes.</p></section></div><section class="panel"><h2>Visitas diárias</h2><p class="muted">Uma visita por sessão de aba por dia, somente com análise de tráfego aceita. Não representa pessoas únicas.</p><div id="visits-chart"></div></section><section class="panel"><h2>Produtos mais vendidos</h2><div id="top-products" class="workspace-table-wrap"></div></section><div class="metric-detail-grid"><section class="panel"><h2>Faturamento diário</h2><p class="muted">Somente pagamentos confirmados, após descontos.</p><div id="sales-chart"></div><details><summary>Ver valores por dia</summary><div id="sales-daily" class="workspace-table-wrap"></div></details></section><section class="panel"><h2>Operação da loja</h2><div id="operation-metrics"></div><p class="muted">As visitas passam a ser registradas a partir desta atualização, mediante consentimento.</p></section></div>
+      </section>
+      <section data-workspace-panel="sales" hidden class="panel"><h2>Vendas e pedidos</h2><form id="email-report" class="report-tools"><label>De <input id="report-from" type="date" required></label><label>Até <input id="report-to" type="date" required></label><button class="btn ghost" type="submit">Gerar relatório de emails</button><p>CSV de compradores pagos, sem emails repetidos. Período pela data do pagamento.</p><span id="report-status" role="status"></span></form><div id="workspace-sales" class="workspace-table-wrap"></div><div class="workspace-pagination"><button class="btn ghost sm" id="sales-prev">Anterior</button><span id="sales-page"></span><button class="btn ghost sm" id="sales-next">Próxima</button></div></section>
+      <section data-workspace-panel="conversations" hidden>
+        <div class="inbox-tools"><label class="sr-only" for="inbox-query">Buscar comprador ou pedido</label><input id="inbox-query" type="search" placeholder="Buscar e-mail ou ID do pedido"><label><input id="inbox-waiting" type="checkbox"> Aguardando resposta</label><span id="inbox-live" role="status">Atualização automática</span></div>
+        <div class="inbox-layout"><section class="panel inbox-list-panel"><h2>Conversas</h2><div id="inbox-list"></div><div class="workspace-pagination"><button class="btn ghost sm" id="inbox-prev">Anterior</button><span id="inbox-page"></span><button class="btn ghost sm" id="inbox-next">Próxima</button></div></section>
+        <section class="panel inbox-chat"><div id="inbox-empty"><h2>Atendimento</h2><p class="muted">Selecione uma compra confirmada para iniciar o bate-papo. Apenas compradores com pagamento confirmado aparecem aqui.</p></div><div id="inbox-thread" hidden><h2 id="inbox-title"></h2><p id="inbox-presence" class="chat-presence" role="status"></p><p id="inbox-context" class="muted"></p><a id="inbox-order-link" href="/pedidos" target="_blank" rel="noopener">Ver pedido e entregar produto ↗</a><div id="inbox-messages" role="log" aria-live="polite" aria-label="Conversa com comprador" tabindex="0"></div><form id="inbox-form"><label for="inbox-text">Sua resposta</label><textarea id="inbox-text" maxlength="2000" required rows="3" placeholder="Escreva uma mensagem para o comprador..."></textarea><button id="inbox-send" class="btn" type="submit">Enviar mensagem</button></form><p id="inbox-send-status" class="msg" role="status"></p></div></section></div>
+      </section>
+      <section data-workspace-panel="customers" hidden class="panel"><h2>Clientes</h2><div id="workspace-customers" class="workspace-table-wrap"></div><div class="workspace-pagination"><button id="customers-prev" class="btn ghost sm">Anterior</button><span id="customers-page"></span><button id="customers-next" class="btn ghost sm">Próxima</button></div></section>
+      <section data-workspace-panel="coupons" hidden class="panel"><h2>Cupom da loja</h2><p>Edite o cupom exibido no pop-up. Pedidos já criados mantêm os valores originais.</p><form id="coupon-editor"><label for="coupon-admin-code">Código</label><input id="coupon-admin-code" required pattern="[A-Z0-9_-]{3,32}" maxlength="32"><label for="coupon-admin-percent">Desconto (%)</label><input id="coupon-admin-percent" type="number" min="1" max="90" required><label><input id="coupon-admin-enabled" type="checkbox"> Cupom e pop-up ativos</label><button class="btn" type="submit">Salvar cupom</button><p id="coupon-edit-status" role="status"></p></form><div id="coupon-metrics"></div></section>
+      <section data-workspace-panel="integrations" hidden class="panel"><h2>Integrações e pagamentos</h2><p id="integration-status" role="status"></p><p>Pantera Pay, Mistic Pay, Discord e UTMify são configurados no servidor. Para UTMify, configure UTMIFY_API_TOKEN no ambiente do site e do worker. A chave nunca é enviada ao navegador. O envio respeita a preferência de análise de tráfego do comprador. Taxas de gateway ainda não são descontadas nos valores enviados à UTMify.</p><p class="muted">Apenas Pix está disponível. Pantera Pay cria o Pix pelo valor, sem solicitar CPF no checkout.</p></section>
+      <section data-workspace-panel="security" hidden class="panel"><h2>Segurança do painel</h2><ul><li>Acesso com usuário, senha e PIN de seis dígitos.</li><li>Banco SQLCipher criptografado e hashes independentes para senha e PIN.</li><li>Sessões protegidas e verificação de autorização nas APIs.</li><li>Limites de requisições e proteção CSRF.</li></ul><p>Para redefinir suas credenciais, execute no servidor:</p><code>.venv/bin/flask --app server create-admin</code><p class="muted">A redefinição encerra sessões administrativas anteriores. Proteção contra DDoS volumétrico depende também da infraestrutura e da futura configuração do Cloudflare.</p></section>
+      <section data-workspace-panel="categories" hidden class="panel category-manager" aria-labelledby="category-manager-title">
+        <h2 id="category-manager-title">Categorias da vitrine</h2>
+        <p class="muted">Escolha uma categoria para personalizar o nome e a foto da vitrine.</p>
+        <details class="game-manager"><summary>Jogos / subcategorias Roblox</summary><p>Cadastre jogos como Blox Fruits, Blade Ball e King Legacy. Eles aparecem somente dentro de Roblox.</p><form id="game-form"><input id="game-id" type="hidden"><label for="game-title">Nome do jogo</label><input id="game-title" maxlength="60" required><label for="game-image">Imagem do jogo</label><input id="game-image" type="file" accept="image/png,image/jpeg,image/webp"><label><input type="checkbox" id="game-remove-image"> Remover imagem atual</label><button class="btn" type="submit">Salvar jogo</button><button class="btn ghost" type="button" id="game-clear">Novo jogo</button><p id="game-status" role="status"></p></form><div id="game-list"></div></details>
+        <form id="category-form">
+          <label for="category-select">Categoria para editar</label><select id="category-select"></select>
+          <label for="category-title">Nome da categoria</label><input id="category-title" maxlength="60" required>
+          <label for="category-photo">Foto da categoria</label><input id="category-photo" type="file" accept="image/png,image/jpeg,image/webp">
+          <p class="muted">PNG, JPG ou WebP, até 5 MB.</p>
+          <img id="category-preview" class="preview" alt="Foto da categoria" hidden>
+          <div class="form-actions"><button id="category-remove-photo" class="btn ghost sm" type="button">Remover foto</button><button id="category-save" class="btn sm" type="submit">Salvar categoria</button></div>
+          <p id="category-message" class="msg" role="status"></p>
+        </form>
+      </section>
+      <section data-workspace-panel="products" hidden><div class="stats" id="stats" aria-label="Resumo do catálogo"></div><div class="admin-grid">
+        <form id="product-form" class="panel">
+          <h2 id="form-title">Novo produto</h2>
+          <p class="muted">Preencha os dados e salve. O produto aparece na loja na hora.</p>
+          <input id="product-id" type="hidden">
+
+          <label for="name">Nome do produto</label>
+          <input id="name" required maxlength="120" placeholder="Ex.: iSeek • 30 dias">
+
+          <label for="category">Categoria</label>
+          <select id="category">
+            <option>Robux</option>
+            <option>Painel (login)</option>
+            <option>Streamings</option>
+            <option>Contas Discord</option>
+            <option>Contas Roblox</option>
+          </select>
+
+          <div id="product-game-field" hidden><label for="product-game">Jogo / subcategoria Roblox</label><select id="product-game"><option value="">Sem subcategoria</option></select></div><label for="description">Descrição do produto</label>
+          <textarea id="description" maxlength="5000" placeholder="Detalhes, duração e informações do produto"></textarea>
+
+          <label for="video-url">Vídeo na descrição (YouTube, Streamable ou Vimeo)</label>
+          <input id="video-url" type="url" maxlength="500" placeholder="https://www.youtube.com/watch?v=... ou https://streamable.com/...">
+          <p class="muted">Opcional. O vídeo será exibido dentro da descrição do produto.</p>
+
+          <label for="product-type">Formato do produto</label>
+          <select id="product-type">
+            <option value="normal">Produto normal (compra direta / carrinho)</option>
+            <option value="variants">Produto com variações (botão Opções)</option>
+          </select>
+
+          <div class="admin-grid-2">
+            <div>
+              <label for="price">Preço real (R$)</label>
+              <input id="price" type="number" min="0.01" max="1000000" step="0.01" required placeholder="15,90" inputmode="decimal">
+            </div>
+            <div>
+              <label for="compare-price">Preço de comparação / riscado (R$)</label>
+              <input id="compare-price" type="number" min="0" max="1000000" step="0.01" placeholder="22,90 (opcional)" inputmode="decimal">
+            </div>
+          </div>
+          <p id="discount-preview" class="muted"></p>
+
+          <div class="admin-grid-2">
+            <div>
+              <label for="min-quantity">Quantidade mínima de compra</label>
+              <input id="min-quantity" type="number" min="1" max="99" step="1" value="1" required>
+            </div>
+            <div>
+              <label for="max-quantity">Quantidade máxima de compra</label>
+              <input id="max-quantity" type="number" min="1" max="99" step="1" value="99" required>
+            </div>
+          </div>
+
+          <section id="variants-panel" class="variants-admin-panel" hidden>
+            <div class="variants-admin-head">
+              <div>
+                <h3>Variações do produto</h3>
+                <p class="muted">Quando o produto é variante, o card exibe o botão glass-gradiente <b>Opções</b> e a página exibe o seletor de variações.</p>
+              </div>
+              <button type="button" class="btn ghost sm" id="add-variant-row">+ Adicionar variação</button>
+            </div>
+            <div id="variants-list" class="variants-admin-list"></div>
+          </section>
+
+          <label for="delivery-mode">Tipo de entrega</label>
+          <select id="delivery-mode"><option value="manual">Manual — suporte entrega pelo pedido</option><option value="automatic">Automática — arquivo .txt do estoque</option></select>
+          <p class="muted">Automática libera uma unidade de texto do estoque para cada unidade comprada, após o Pix confirmado. A transferência de Robux continua sendo feita pelo suporte.</p>
+          <div id="robux-config"><label for="robux-quantity">Quantidade de Robux por unidade do produto</label><input id="robux-quantity" type="number" min="1" max="1000000000" step="1" placeholder="Ex.: 1000"></div>
+          <label for="image">Imagem do produto</label>
+          <input id="image" type="file" accept="image/png,image/jpeg,image/webp">
+          <p class="muted">PNG, JPG ou WebP, até 5 MB. Sem imagem, a loja mostra uma arte padrão da categoria.</p>
+          <img id="preview" class="preview" hidden alt="Prévia do produto">
+          <button type="button" id="remove-image" class="btn ghost sm" hidden>Remover imagem</button>
+
+          <div class="form-actions">
+            <button class="btn" id="save" type="submit">Salvar produto</button>
+            <button type="button" class="btn ghost" id="cancel">Limpar</button>
+          </div>
+          <p id="message" class="msg" role="status"></p>
+          <section id="stock-panel" hidden>
+            <h3>Estoque para entrega automática</h3>
+            <p id="stock-count" class="muted"></p>
+            <p class="muted">Cada cadastro é uma unidade independente. Você pode adicionar novas unidades ou clicar em <b>Editar</b> para atualizar uma unidade disponível.</p>
+            <input type="hidden" id="editing-stock-id" value="">
+            <label for="stock-content" id="stock-content-label">Conteúdo de uma unidade</label>
+            <textarea id="stock-content" maxlength="20000" placeholder="Informações do produto e instruções de uso"></textarea>
+            <div class="form-actions">
+              <button class="btn" type="button" id="add-stock">Adicionar unidade ao estoque</button>
+              <button class="btn ghost sm" type="button" id="cancel-edit-stock" hidden>Cancelar edição</button>
+            </div>
+            <p id="stock-status" class="msg" role="status"></p>
+            <div id="stock-list"></div>
+          </section>
+        </form>
+
+        <div class="panel">
+          <div class="list-head">
+            <h2>Catálogo</h2>
+            <span id="total" class="muted"></span>
+          </div>
+          <div class="list-tools">
+            <input id="list-search" type="search" placeholder="Buscar no catálogo" aria-label="Buscar no catálogo">
+            <select id="list-filter" aria-label="Filtrar por categoria"></select>
+          </div>
+          <div id="list"></div>
+        </div>
+      </div></section>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/admin.js?v=8"></script>
+<script src="/static/admin-workspace.js?v=pantera-6"></script><script src="/static/experience.js?v=4"></script></body>
+</html>
