@@ -1,0 +1,30 @@
+.orders-shell { max-width: 1200px; margin: auto; padding: 32px 20px; }
+.orders-layout { display: grid; grid-template-columns: 320px minmax(0,1fr); gap: 20px; align-items: start; }
+.order-card { border-bottom: 1px solid var(--line); padding: 18px 0; }
+.order-card strong { display: block; overflow-wrap: anywhere; }
+.order-card small { display: block; color: var(--muted); margin: 5px 0; }
+.order-card p { font-size: 13px; }
+.order-card .btn { margin-top: 10px; }
+.payment-tag { display: inline-flex; align-items: center; font-size: 11px; font-weight: 700; border: 1px solid #ffffff15; border-radius: 999px; padding: 4px 10px; color: #c7b4cc; letter-spacing: .2px; margin-top: 4px; }
+.payment-tag.pending { color: #fde047; background: #eab30826; border-color: #eab30873; }
+.payment-tag.paid { color: #4ade80; background: #22c55e26; border-color: #22c55e73; }
+.payment-tag.failed { color: #fca5a5; background: #ef444424; border-color: #ef444466; }
+.order-item { padding: 16px; border: 1px solid var(--line); border-radius: 10px; margin: 16px 0; }
+.order-item h3 { font-size: 16px; }
+.order-item p { margin-top: 5px; color: var(--muted); font-size: 13px; }
+.order-item .btn { display: inline-block; }
+#order-title { overflow-wrap: anywhere; }
+#order-info { color: var(--muted); margin: 12px 0; overflow-wrap: anywhere; }
+#payment-area, .order-chat { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
+#payment-status { color: var(--muted); margin: 12px 0; }
+#chat-messages { height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; margin-top: 16px; padding: 12px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; }
+.chat-message { max-width: 88%; align-self: flex-start; padding: 10px 14px; border-radius: 12px; background: var(--surface-2); }
+.chat-message.support { align-self: flex-end; border: 1px solid #740101; background: #300d13; }
+.chat-message small { color: var(--muted); font-size: 11px; }
+.chat-message p { white-space: pre-wrap; overflow-wrap: anywhere; margin-top: 5px; font-size: 14px; }
+.stock-unit { display: flex; justify-content: space-between; align-items: center; gap: 8px; border-top: 1px solid var(--line); padding: 8px 0; font-size: 12px; }
+.stock-unit .btn { margin-top: 0; }
+#stock-panel { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 20px; }
+#integration-status { padding: 14px 0; color: var(--muted); }
+@media (max-width: 800px) { .orders-layout { grid-template-columns: 1fr; } .orders-shell { padding: 24px 12px; } }
+.order-chat{border:1px solid #ffffff18;border-radius:20px;padding:20px;background:#0f0d12}.chat-presence{font-size:12px;color:#e97d8c;min-height:18px}#chat-messages{min-height:260px;max-height:50vh;background:#0b090d;border-radius:14px;padding:16px}.chat-message{border-radius:16px 16px 4px 16px;background:#3d0c18;max-width:85%;margin-left:auto}.chat-message.support{border-radius:16px 16px 16px 4px;margin-left:0;margin-right:auto;background:#211c25}[data-receipt]::after{content:attr(data-receipt);display:block;text-align:right;font-size:10px;color:#caa}#chat-form{border:1px solid #ffffff20;border-radius:14px;padding:12px;margin-top:14px}#chat-text{border:0;background:transparent}

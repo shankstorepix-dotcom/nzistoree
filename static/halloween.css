@@ -1,0 +1,98 @@
+/* Shared branding uses the supplied original file, without external image hosts. */
+.nzi-logo-frame { display:inline-block; position:relative; width:150px; height:64px; overflow:hidden; border-radius:10px; background:#101010; vertical-align:middle; flex-shrink:0; }
+.nzi-logo-frame img { position:absolute; width:185%; max-width:none; height:auto; left:-42%; top:50%; transform:translateY(-50%); }
+.logo .nzi-logo-frame { width:125px; height:48px; }
+.sidebar-brand { justify-content:center; padding:0; }
+.sidebar-brand .nzi-logo-frame { width:196px; height:86px; }
+.brand .nzi-logo-frame { width:145px; height:58px; }
+.foot-in .nzi-logo-frame { width:165px; height:70px; }
+body { background-color:#090507; }
+.showcase.hero { border-color:#9c182e; box-shadow:inset 0 0 60px #990b1a20,0 0 30px #85091912; }
+.showcase.hero::before { background:repeating-conic-gradient(from 14deg at 100% 0%,transparent 0deg 13deg,#ff66751c 13deg 14deg,transparent 14deg 30deg),repeating-radial-gradient(circle at 100% 0%,transparent 0 55px,#ff667517 56px 57px,transparent 58px 110px); pointer-events:none; }
+.hero-badge::before { content:'🎃 '; }
+.banner-caption small::before { content:'✦ '; color:#ff4b62; }
+.category-track .tile { border-color:#771326; }
+.halloween-modal-open { overflow:hidden; }
+.halloween-popup { padding:0; width:min(390px,calc(100vw - 32px)); max-height:calc(100dvh - 32px); overflow:auto; border:2px solid #ff263f; border-radius:28px; color:white; background:#090406; box-shadow:0 0 14px #ff002866,0 0 50px #ff002830,inset 0 0 25px #ff00281a; }
+.halloween-popup::backdrop { background:radial-gradient(circle,#35041085,#030103ed 75%); backdrop-filter:blur(5px); }
+.halloween-popup-inner { position:relative; text-align:center; padding:24px; background:repeating-conic-gradient(from 8deg at 0 0,transparent 0deg 17deg,#ff344510 18deg 19deg,transparent 20deg 35deg); }
+.halloween-close { position:absolute; right:12px; top:10px; border:0; color:#ff455b; background:transparent; font-size:30px; width:36px; height:36px; cursor:pointer; z-index:2; }
+.popup-brand { width:145px; height:62px; margin-bottom:12px; }
+.halloween-eyebrow { display:block; font:700 9px system-ui; letter-spacing:1.7px; color:#ff889a; }
+.halloween-popup h2 { font:900 27px/1.15 system-ui; margin:12px 0; }
+.halloween-popup h2 em { font-style:normal; color:#ff2949; }
+.halloween-popup p { font:14px/1.5 system-ui; color:#cebcc1; margin:12px 0; }
+.halloween-coupon-frame { border:1px dashed #f52b48; border-radius:18px; padding:12px 16px 16px; background:radial-gradient(ellipse at top,#7b102c55,transparent),#11070c; }
+.halloween-gif { width:112px; height:112px; display:block; object-fit:contain; margin:0 auto 8px; border-radius:16px; }
+.halloween-static { display:none; font-size:72px; line-height:112px; }
+.animation-paused .halloween-gif { display:none; }
+.animation-paused .halloween-static { display:block; }
+.halloween-coupon-frame strong { display:block; font:800 12px system-ui; color:#ff8797; letter-spacing:2px; margin-bottom:10px; }
+#halloween-copy { width:100%; border:1px solid #ff667a; background:linear-gradient(#e92340,#a20202); color:#fff; border-radius:12px; padding:12px; cursor:pointer; box-shadow:0 0 18px #ff123b35; font:900 22px system-ui; letter-spacing:1px; }
+#halloween-copy span { display:block; margin-top:4px; font:500 11px system-ui; letter-spacing:0; }
+.halloween-popup #halloween-message { font-size:12px; min-height:18px; }
+.halloween-continue { border:0; color:white; background:transparent; cursor:pointer; font:700 13px system-ui; padding:8px; }
+.halloween-animation { display:block; margin:4px auto 0; background:transparent; border:0; color:#b6a2aa; cursor:pointer; font-size:10px; padding:4px; }
+.halloween-popup button:focus-visible,.halloween-reopen:focus-visible { outline:2px solid #fff; outline-offset:3px; }
+.halloween-reopen { position:fixed; bottom:18px; left:20px; z-index:30; border:1px solid #df2945; border-radius:24px; padding:11px 16px; color:white; background:#390b18; box-shadow:0 4px 22px #0007; cursor:pointer; font:700 12px system-ui; }
+.coupon-form { margin:12px 0; }
+.coupon-form label { display:block; font-size:12px; margin-bottom:6px; }
+.coupon-form>div { display:flex; gap:6px; flex-wrap:wrap; }
+.coupon-form input { flex:1; min-width:100px; width:100px; }
+.coupon-form .btn { padding:9px; font-size:12px; }
+.coupon-form p { color:#e9b4c1; font-size:12px; }
+@media(max-width:520px) { .halloween-popup-inner { padding:22px 18px 16px; } .halloween-gif { width:88px; height:88px; } .halloween-popup h2 { font-size:24px; } .halloween-reopen { left:12px; bottom:12px; padding:9px 12px; } }
+/* Transparent Halloween wordmark, displayed in full. */
+.nzi-logo-frame { background:transparent; overflow:visible; border-radius:0; }
+.nzi-logo-frame img { position:static; display:block; width:100%; height:100%; max-width:100%; transform:none; object-fit:contain; }
+.art-wm { width:70px; height:34px; }
+.art-wm img { width:100%; height:100%; object-fit:contain; }
+.coupon-code-row { display:flex; align-items:center; gap:9px; padding:12px 10px; border:1px solid #c92a4a; border-radius:12px; background:linear-gradient(110deg,#301329,#191522); box-shadow:0 2px 0 #9c1940; }
+.coupon-bolt { display:grid; place-items:center; width:30px; height:32px; flex-shrink:0; border-radius:9px; color:white; background:linear-gradient(135deg,#ff4057,#970d3e); font-size:26px; }
+.coupon-code-row code { color:white; font:800 clamp(14px,4vw,20px) monospace; letter-spacing:1px; flex:1; }
+.coupon-code-row #halloween-copy { display:flex; align-items:center; justify-content:center; gap:6px; width:auto; padding:10px 11px; background:#fff; color:#171322; border:0; border-radius:8px; box-shadow:none; font:600 12px system-ui; letter-spacing:0; flex-shrink:0; }
+.coupon-code-row #halloween-copy span { margin:0; font:inherit; }
+/* Category reference: animated perimeter, image shade and staggered shine. */
+@property --category-angle { syntax:'<angle>'; initial-value:0deg; inherits:false; }
+@keyframes category-border { to { --category-angle:360deg; } }
+@keyframes category-sweep { 0% {left:-100%;opacity:0;} 5% {opacity:1;} 50% {left:160%;opacity:1;} 51%,100% {left:160%;opacity:0;} }
+.category-showcase { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+.tile.cat-card,.tiles.compact .tile.cat-card { display:block; grid-column:auto; padding:2.5px; height:220px; min-height:0; border:0; border-radius:12px; background:conic-gradient(from var(--category-angle),#4e0616,#d1233b 20%,#ffc2c9 50%,#d1233b 80%,#4e0616); animation:category-border 3s linear infinite; transition:transform .25s; }
+.tile.cat-card::before,.tile.cat-card::after { display:none; }
+.tile.cat-card:hover { transform:scale(1.025); }
+.category-inner { position:relative; width:100%; height:100%; overflow:hidden; border-radius:10px; background:radial-gradient(ellipse at 80% 0%,#6c112a,#180810 70%); }
+.category-inner .category-photo { filter:brightness(.7); }
+.category-inner .glyph { top:18px; right:20px; width:90px; height:90px; opacity:.6; transform:rotate(-12deg); }
+.category-base { position:absolute; inset:0; background:linear-gradient(to top,#000e, #0007 40%,transparent); }
+.category-shine { position:absolute; top:0; left:-100%; width:60%; height:100%; background:linear-gradient(100deg,transparent 20%,#ffffff10 38%,#ffffff70 50%,#ffffff10 62%,transparent 80%); transform:skewX(-18deg); animation:category-sweep 5s ease-in-out infinite; pointer-events:none; }
+.cat-card:nth-child(2) .category-shine { animation-delay:.9s; }.cat-card:nth-child(3) .category-shine { animation-delay:1.8s; }.cat-card:nth-child(4) .category-shine { animation-delay:2.7s; }.cat-card:nth-child(5) .category-shine { animation-delay:3.6s; }
+.category-caption { position:absolute; left:18px; right:18px; bottom:17px; display:flex; flex-direction:column; gap:9px; }
+.category-caption h3 { font-size:32px; }
+.category-caption .count { font-size:9px; }
+.category-explore { display:flex; justify-content:space-between; color:#d4bdc6; font-size:11px; }
+.category-explore span { color:#ff8193; font-size:17px; }
+/* Two-level header gives the search and primary actions room to breathe. */
+.top { background:#100a0feb; backdrop-filter:blur(18px); border-bottom:1px solid #82213a; box-shadow:0 8px 30px #0005; }
+.top-in { display:grid; grid-template-columns:138px minmax(120px,1fr) auto auto; gap:12px 20px; height:auto; min-height:108px; padding:12px 0 0; }
+.top .logo { grid-column:1; grid-row:1; }
+.top .logo .nzi-logo-frame { width:138px; height:56px; }
+.top .search { grid-column:2; grid-row:1; width:100%; max-width:none; }
+.top .search input { height:44px; border:1px solid #ffffff20; border-radius:12px; background:#ffffff08; color:white; font-size:13px; }
+.top .search input::placeholder { color:#ad97a1; }
+.top .search input:focus-visible { outline:2px solid #d52e51; outline-offset:1px; }
+.top .search svg { color:#cda5b2; }
+.header-account { grid-column:3; grid-row:1; display:flex; gap:8px; align-items:center; border:0; font-size:12px; padding:10px; white-space:nowrap; }
+.top .cart-btn { grid-column:4; grid-row:1; background:linear-gradient(135deg,#bf1234,#750b24); color:#fff; border:1px solid #de3655; border-radius:12px; padding:11px 14px; font-size:12px; }
+.top .cart-count { background:#ffffff20; }
+.top .nav { grid-column:1/-1; grid-row:2; width:100%; margin:0; border-top:1px solid #ffffff0b; padding:5px 0; gap:16px; }
+.top .nav a,.top .nav .dd>button { font-size:12px; color:#d9c2cd; padding:7px 10px; }
+.strip { background:#170b12; border-bottom:1px solid #ffffff09; font-size:10px; }
+@media(max-width:1100px) { .top-in { gap:10px; grid-template-columns:110px minmax(100px,1fr) auto auto; }.top .logo .nzi-logo-frame {width:110px;} .header-account span {display:none;} }
+@media(max-width:999px) { .sidebar {display:none;} }
+@media(max-width:860px) { .top-in { grid-template-columns:36px 1fr auto auto; min-height:0; padding:8px 0 12px; }.top .burger {display:grid;grid-column:1;grid-row:1;}.top .logo {grid-column:2;}.top .logo .nzi-logo-frame {width:120px;height:48px;}.top .search {grid-column:1/-1;grid-row:2;}.top .nav {display:none;}.header-account {grid-column:3;}.top .cart-btn {grid-column:4;} }
+@media(max-width:600px) { .category-showcase {grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}.tile.cat-card,.tiles.compact .tile.cat-card {height:170px;}.category-caption {left:12px;right:12px;bottom:12px;gap:7px;}.category-caption h3 {font-size:25px;}.category-inner .glyph {width:58px;height:58px;}.top .cart-btn {padding:9px;}.strip .soon {display:none;} }
+@media(prefers-reduced-motion:reduce) { .tile.cat-card,.category-shine {animation:none!important;transition:none;}.tile.cat-card:hover {transform:none;} }
+.showcase h1 { font-size:clamp(30px,3.4vw,48px); overflow-wrap:anywhere; }
+@media(max-width:760px) { .showcase h1 {font-size:clamp(30px,7vw,46px);} }
+
+#halloween-copy.is-copied{background:#166534;color:#dcfce7;border-color:#4ade80;box-shadow:0 0 15px #22c55e33;}
