@@ -73,7 +73,7 @@ def create_app(config=None):
     base_storage = Path('/tmp/nzistore') if is_vercel else ROOT
     vercel_host = os.getenv('VERCEL_PROJECT_PRODUCTION_URL') or os.getenv('VERCEL_URL') or ''
     default_origin = f"https://{vercel_host}" if is_vercel and vercel_host else 'http://localhost:8000'
-    raw_origin = os.getenv('PUBLIC_ORIGIN', default_origin).strip()
+    raw_origin = (os.getenv('APP_URL') or os.getenv('PUBLIC_ORIGIN') or os.getenv('SITE_URL') or default_origin).strip()
     if raw_origin and not raw_origin.startswith(('http://', 'https://')):
         raw_origin = f"https://{raw_origin}"
     app.config.update(DATA_DIR=str(base_storage/'data'), UPLOAD_DIR=str(base_storage/'uploads'),
@@ -1234,6 +1234,7 @@ def create_app(config=None):
     from commerce import install_commerce
     install_commerce(app, db, key, data, require_admin, limit, audit)
     return app
+
 
 if __name__ == '__main__':
     create_app().run(host='127.0.0.1', port=int(os.getenv('PORT','8000')), debug=False)
